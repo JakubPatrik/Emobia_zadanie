@@ -129,7 +129,7 @@ class _SearchResultsState extends State<SearchResults> {
                   }),
                 );
               }
-              if (!snapshot.hasData || snapshot.hasError){
+              if (snapshot.hasError){
                 return Center(
                     child: Column(
                       children: [
