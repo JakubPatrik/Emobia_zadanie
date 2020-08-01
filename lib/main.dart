@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'file:///C:/Users/Jakub%20Patrik/Desktop/Emobia_zadanie/myapp/lib/models/pages.dart';
 import 'package:myapp/views/Account.dart';
 import 'package:myapp/views/Cart.dart';
 import 'package:myapp/views/Favorites.dart';
 import 'package:myapp/views/Home.dart';
 import 'package:myapp/views/Search.dart';
 import 'package:provider/provider.dart';
+
+import 'models/pages.dart';
 
 void main() {
   runApp(MultiProvider(

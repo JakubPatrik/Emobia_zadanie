@@ -17,6 +17,8 @@ class SearchResults extends StatefulWidget {
 }
 
 class _SearchResultsState extends State<SearchResults> {
+
+
   @override
   Widget build(BuildContext context) {
     debugPrint(widget.searchQuery);
@@ -150,13 +152,17 @@ class _SearchResultsState extends State<SearchResults> {
         items: Pages().getPageData.entries.map(
                 (e) => BottomNavigationBarItem(
               icon: e.value,
-              title: Text(e.key, style: TextStyle(color: Colors.black),),
+              title: Text('', style: TextStyle(color: Colors.red, fontSize: 0),),
             )
         ).toList(),
         onTap: (index) {
           Navigator.of(context).pop();
           Provider.of<Pages>(context, listen:false).updatePage(Pages().getPages[index], context);
         },
+        selectedIconTheme: IconThemeData(size: 35),
+        unselectedItemColor: Colors.white10,
+        currentIndex: 1,
+        type: BottomNavigationBarType.shifting,
       ),
     );
   }
