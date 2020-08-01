@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'file:///C:/Users/Jakub%20Patrik/Desktop/Emobia_zadanie/myapp/lib/models/pages.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
+    //SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     return MaterialApp(
       title: 'Topankovo',
       theme: ThemeData(
@@ -45,6 +46,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,42 +67,39 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Consumer<Pages>(
         builder: (context, data, child) {
-          switch (data.getPage){
-            case "Home": return Home();
-            case "Search": return Search();
-            case "Cart": return Cart();
-            case "Favorites": return Favorites();
-            case "Account": return Account();
-            default : return null;
+          switch (data.getPage) {
+            case "Home":
+              return Home();
+            case "Search":
+              return Search();
+            case "Cart":
+              return Cart();
+            case "Favorites":
+              return Favorites();
+            case "Account":
+              return Account();
+            default :
+              return null;
           }
-//          if (data.getPage == "Home") {
-//            return Home();
-//          }
-//          if (data.getPage == "Search") {
-//            return Search();
-//          }
-//          if (data.getPage == "Cart") {
-//            return Cart();
-//          }
-//          if (data.getPage == "Favorites") {
-//            return Favorites();
-//          }
-//          if (data.getPage == "Account") {
-//            return Account();
-//          }
-//          return null;
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: Pages().getPageData.entries.map(
           (e) => BottomNavigationBarItem(
             icon: e.value,
-            title: Text(e.key, style: TextStyle(color: Colors.black),),
+            title: Text('', style: TextStyle(color: Colors.red, fontSize: 0),),
           )
         ).toList(),
         onTap: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
           Provider.of<Pages>(context, listen:false).updatePage(Pages().getPages[index], context);
         },
+        selectedIconTheme: IconThemeData(size: 35),
+        unselectedItemColor: Colors.white10,
+        currentIndex: _selectedIndex,
+        type: BottomNavigationBarType.shifting,
       ),
     );
   }
